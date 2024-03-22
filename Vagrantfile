@@ -4,7 +4,7 @@
 MACHINES = {
   :otuslinux => {
         :box_name => "centos/7",
-        :ip_addr => '192.168.11.101',
+        :ip_addr => '192.168.56.101',
 	:disks => {
 		:sata1 => {
 			:dfile => './sata1.vdi',
@@ -25,6 +25,11 @@ MACHINES = {
                         :dfile => './sata4.vdi',
                         :size => 250, # Megabytes
                         :port => 4
+                },
+                :sata5 => {
+                        :dfile => './sata5.vdi',
+                        :size => 250,
+                        :port => 5
                 }
 
 	}
@@ -66,7 +71,7 @@ Vagrant.configure("2") do |config|
  	  box.vm.provision "shell", inline: <<-SHELL
 	      mkdir -p ~root/.ssh
               cp ~vagrant/.ssh/auth* ~root/.ssh
-	      yum install -y mdadm smartmontools hdparm gdisk
+	      yum install -y mdadm smartmontools hdparm gdisk nano
   	  SHELL
 
       end
